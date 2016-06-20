@@ -26,7 +26,16 @@ public class ServerLoadBalancerMatcher extends TypeSafeMatcher<Server> {
 
 	@Override
 	protected boolean matchesSafely(Server server) {
-		return expectedLoad == server.currentLoad || Math.abs(expectedLoad - server.currentLoad)<0.01d;
+		return doublesAreEqual(expectedLoad, server.currentLoad);
+	}
+
+	private boolean doublesAreEqual(double d1, double d2) {
+		return d1 == d2 || Math.abs(d1 - d2)<0.01d;
+	}
+	
+	public static ServerLoadBalancerMatcher hasCurrentLoadOf(double expectedLoad) {
+		// TODO Auto-generated method stub
+		return new ServerLoadBalancerMatcher(expectedLoad);
 	}
 	
 	

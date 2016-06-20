@@ -9,15 +9,10 @@ public class ServerLoadBalancerTest
 	@Test
 	public void balancingServer_noVm_ServerStaysEmpty()
 	{
-		Server theServer = a(server().witchCapacity(1));
+		Server theServer = a(ServerBuilder.server().witchCapacity(1));
 		balancing(aServerListWith(theServer), anEmptyListOfVms());
 		
-		assertThat(theServer, hasCurrentLoadOf(0.0d));
-	}
-
-	private Matcher<? super Server> hasCurrentLoadOf(double expectedLoad) {
-		// TODO Auto-generated method stub
-		return new ServerLoadBalancerMatcher(expectedLoad);
+		assertThat(theServer, ServerLoadBalancerMatcher.hasCurrentLoadOf(0.0d));
 	}
 
 	private void balancing(Server[] servers, Vm[] vms) {
@@ -40,8 +35,5 @@ public class ServerLoadBalancerTest
 		return builder.build();
 	}
 
-	private ServerBuilder server() {
-		// TODO Auto-generated method stub
-		return new ServerBuilder();
-	}
+	
 }
