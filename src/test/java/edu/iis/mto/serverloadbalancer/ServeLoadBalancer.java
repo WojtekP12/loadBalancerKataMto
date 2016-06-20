@@ -3,8 +3,10 @@ package edu.iis.mto.serverloadbalancer;
 public class ServeLoadBalancer {
 
 	public void balance(Server[] servers, Vm[] vms) {
-		// TODO Auto-generated method stub
-		
+		if(vms.length>0)
+		{
+			servers[0].currentLoad = 100.0d;
+		}
 	}
 
 }
