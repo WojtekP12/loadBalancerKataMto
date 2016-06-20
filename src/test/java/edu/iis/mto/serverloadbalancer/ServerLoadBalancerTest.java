@@ -18,28 +18,13 @@ public class ServerLoadBalancerTest
 	public void balancingOneServerWithOneSlotCapacity_andOneSlotVm_fillsTheServerWithTheVm()
 	{
 		Server theServer = a(ServerBuilder.server().witchCapacity(1));
-		Vm theVm = a(vm().ofSize(1));
+		Vm theVm = a(VmBuilder.vm().ofSize(1));
 		balancing(aServerListWith(theServer), aVmListWith(theVm));
 		
 		assertThat(theServer, ServerLoadBalancerMatcher.hasCurrentLoadOf(100.0d));
 		assertThat("a server has the vm ", theServer.contains(theVm));
 	}
 	
-	private Vm[] aVmListWith(Vm... vms) {
-		// TODO Auto-generated method stub
-		return vms;
-	}
-
-	private Vm a(VmBuilder builder) {
-		// TODO Auto-generated method stub
-		return builder.build();
-	}
-
-	private VmBuilder vm() {
-		// TODO Auto-generated method stub
-		return new VmBuilder();
-	}
-
 	private void balancing(Server[] servers, Vm[] vms) {
 		new ServeLoadBalancer().balance(servers,vms);
 		
@@ -49,16 +34,20 @@ public class ServerLoadBalancerTest
 		// TODO Auto-generated method stub
 		return new Vm[0];
 	}
-
+	
+	private Vm[] aVmListWith(Vm... vms) {
+		// TODO Auto-generated method stub
+		return vms;
+	}
+	
 	private Server[] aServerListWith(Server... servers) {
 		// TODO Auto-generated method stub
 		return servers;
 	}
-
-	private Server a(ServerBuilder builder) {
-		// TODO Auto-generated method stub
+	
+	private <T> T a(Builder<T> builder)
+	{
 		return builder.build();
 	}
-
 	
 }
