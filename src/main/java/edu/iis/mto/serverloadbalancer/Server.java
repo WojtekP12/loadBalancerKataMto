@@ -12,8 +12,8 @@ public class Server {
 	public int capacity;
 
 	public boolean contains(Vm theVm) {
-		// TODO Auto-generated method stub
-		return true;
+		
+		return vmList.contains(theVm);
 	}
 	
 	List<Vm> vmList = new ArrayList<Vm>();
