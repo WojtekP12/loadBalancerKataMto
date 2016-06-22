@@ -16,8 +16,6 @@ public class Server {
 		return true;
 	}
 	
-	List<Vm> vmList = new ArrayList<Vm>();
-	
 	public Server(int capacity) {
 		super();
 		this.capacity = capacity;
@@ -25,14 +23,6 @@ public class Server {
 
 	public void addVm(Vm vm) {
 		currentLoad = vm.size / capacity * MAXCAPACITY;
-		vmList.add(vm);
 	}
-
-	public int vmsCount() {
-		// TODO Auto-generated method stub
-		return vmList.size();
-	}
-	
-	
-
+		
 }
