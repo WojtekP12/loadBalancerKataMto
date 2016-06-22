@@ -28,5 +28,9 @@ public class VmCountPercentageMatcher extends TypeSafeMatcher<Server> {
 		
 		return count == item.vmsCount();
 	}
+	
+	public static VmCountPercentageMatcher hasVmCountOf(int count) {
+		return new VmCountPercentageMatcher(count);
+	}
 
 }
