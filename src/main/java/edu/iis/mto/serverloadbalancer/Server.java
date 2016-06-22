@@ -4,6 +4,7 @@ import org.hamcrest.Matcher;
 
 public class Server {
 
+	private static final double MAXCAPACITY = 100.0d;
 	public double currentLoad;
 	public int capacity;
 
@@ -15,6 +16,10 @@ public class Server {
 	public Server(int capacity) {
 		super();
 		this.capacity = capacity;
+	}
+
+	public void addVm(Vm vm) {
+		currentLoad = vm.size / capacity * MAXCAPACITY;
 	}
 	
 	

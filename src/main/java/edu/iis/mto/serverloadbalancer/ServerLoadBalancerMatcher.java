@@ -6,6 +6,7 @@ import org.hamcrest.TypeSafeMatcher;
 
 public class ServerLoadBalancerMatcher extends TypeSafeMatcher<Server> {
 
+	private static final double EPSILON = 0.01d;
 	private double expectedLoad;
 
 	public ServerLoadBalancerMatcher(double expectedLoad) {
@@ -30,7 +31,7 @@ public class ServerLoadBalancerMatcher extends TypeSafeMatcher<Server> {
 	}
 
 	private boolean doublesAreEqual(double d1, double d2) {
-		return d1 == d2 || Math.abs(d1 - d2)<0.01d;
+		return d1 == d2 || Math.abs(d1 - d2)<EPSILON;
 	}
 	
 	public static ServerLoadBalancerMatcher hasCurrentLoadOf(double expectedLoad) {
