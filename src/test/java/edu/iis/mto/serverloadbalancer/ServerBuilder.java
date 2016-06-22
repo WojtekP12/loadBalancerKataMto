@@ -12,7 +12,7 @@ public class ServerBuilder implements Builder<Server>{
 
 	public Server build() {
 		// TODO Auto-generated method stub
-		return new Server();
+		return new Server(capacity);
 	}
 	
 	public static ServerBuilder server() {
