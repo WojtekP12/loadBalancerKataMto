@@ -29,8 +29,11 @@ public class Server {
 	}
 
 	public int vmsCount() {
-		// TODO Auto-generated method stub
 		return vmList.size();
+	}
+
+	public boolean canFit(Vm vm) {
+		return currentLoad + ((double)vm.size / (double)capacity * MAXCAPACITY) <= MAXCAPACITY;
 	}
 	
 	

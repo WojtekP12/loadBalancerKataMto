@@ -64,24 +64,31 @@ public class ServerLoadBalancerTest
 		assertThat("more loaded server should not contain the vm ", !moreLoadedServer.contains(theVm));
 	}
 	
-
+	@Test
+	public void balance_serversANdVms()
+	{
+		Server theServer = a(ServerBuilder.server().witchCapacity(10).withCurrentLoadOf(90.0d));
+		Vm theVm = a(VmBuilder.vm().ofSize(2));
+		balancing(aServerListWith(theServer), aVmListWith(theVm));
+		
+		assertThat("the server should not contain the vm ", !theServer.contains(theVm));
+		
+	}
+	
 	private void balancing(Server[] servers, Vm[] vms) {
 		new ServeLoadBalancer().balance(servers,vms);
 		
 	}
 
 	private Vm[] anEmptyListOfVms() {
-		// TODO Auto-generated method stub
 		return new Vm[0];
 	}
 	
 	private Vm[] aVmListWith(Vm... vms) {
-		// TODO Auto-generated method stub
 		return vms;
 	}
 	
 	private Server[] aServerListWith(Server... servers) {
-		// TODO Auto-generated method stub
 		return servers;
 	}
 	
